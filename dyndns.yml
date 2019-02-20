@@ -1,0 +1,17 @@
+---
+- name: Update DNS for demo.labdroid.net
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Update demo.labdroid.net to "{{ ip }}"
+      route53:
+        state: present
+        zone: 'labdroid.net'
+        record: 'demo.labdroid.net'
+	overwrite: yes
+        type: A
+        ttl: 300
+        value: "{{ ip }}"
+        wait: yes
+
+
